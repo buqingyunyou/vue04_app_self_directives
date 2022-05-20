@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo1">
+      <p v-upper-text="msg"></p>
+      <p v-lower-text="msg"></p>
+    </div>
+
+    <!-- <div id="demo2">
+    <p v-upper-text="msg2"></p>
+    <p v-lower-text="msg2"></p>
+  </div> -->
+
+    <script src="./lib/vue.js"></script>
+    <script>
+      // 定义注册全局指令
+      Vue.directive("upper-text", function (el, binding) {
+        el.innerHTML = binding.value.toUpperCase();
+      });
+
+      new Vue({
+        el: "#demo1",
+        data: {
+          msg: "NBA love this game",
+        },
+        // 局部定义注册指令
+        directives: {
+          "lower-text": {
+            bind(el, binding) {
+              el.innerHTML = binding.value.toLowerCase();
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
